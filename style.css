@@ -274,3 +274,28 @@ button {
 canvas {
 	display: none;
 }
+
+.app-input-container {
+  position: relative;
+}
+
+.app-input-container > input#background {
+  padding-right: 4em;
+}
+
+.app-input-container > input#foreground {
+  padding-left: 4em;
+}
+
+.app-color-picker {
+  position: absolute;
+  top: 0.37em;
+}
+
+input#background + .app-color-picker {
+  right: 3em;
+}
+
+input#foreground + .app-color-picker {
+  left: 3em;
+}

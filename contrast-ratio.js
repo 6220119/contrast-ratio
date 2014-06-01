@@ -227,7 +227,7 @@ function hashchange() {
 
 	if (location.hash) {
 		var colors = location.hash.slice(1).split('-on-');
-		
+
 		foreground.value = decodeURIComponent(colors[0]);
 		background.value = decodeURIComponent(colors[1]);
 	}
@@ -235,7 +235,7 @@ function hashchange() {
 		foreground.value = foreground.defaultValue;
 		background.value = background.defaultValue;
 	}
-	
+
 	background.oninput();
 	foreground.oninput();
 };
@@ -253,10 +253,10 @@ swap.onclick = function() {
 	var backgroundColor = background.value;
 	background.value = foreground.value;
 	foreground.value = backgroundColor;
-	
+
 	colorChanged(background);
 	colorChanged(foreground);
-	
+
 	update();
 }
 
