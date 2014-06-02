@@ -48,6 +48,7 @@
     <option passfail="false" />
     <option phantom="false" />
     <option plusplus="false" />
+    <option predef="angular&#10;" />
     <option proto="false" />
     <option prototypejs="false" />
     <option quotmark="false" />

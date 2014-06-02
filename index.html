@@ -9,13 +9,12 @@
   <script src="prefixfree.min.js"></script>
 </head>
 <body>
-
 <h1><a href="#"><span>Contrast</span> <strong>ratio</strong></a></h1>
 
 <label class="background">
   <span>Background:</span>
   <div class="app-input-container">
-    <input id="background" ng-model="page.backgroundColor" ng-change="page.notifyChange()" autofocus incrementable-text />
+    <input id="background" ng-model="page.backgroundColor" ng-change="page.notifyChange()" autofocus incrementable-text auto-length />
     <spectrum-colorpicker class="app-color-picker" ng-model="page.backgroundColor" ng-change="page.notifyChange()" options="page.colorPickerOptions"></spectrum-colorpicker>
   </div>
 </label>
@@ -23,7 +22,7 @@
 <label class="foreground">
   <span>Text color:</span>
   <div class="app-input-container">
-    <input id="foreground" ng-model="page.textColor" ng-change="page.notifyChange()" incrementable-text />
+    <input id="foreground" ng-model="page.textColor" ng-change="page.notifyChange()" incrementable-text auto-length />
     <spectrum-colorpicker class="app-color-picker" ng-model="page.textColor" ng-change="page.notifyChange()" options="page.colorPickerOptions"></spectrum-colorpicker>
   </div>
 </label>
@@ -60,11 +59,21 @@
   </footer>
 </section>
 
-<section class="color-display" id="foregroundDisplay" ng-style="{'background': page.textColor}">
+<section class="color-display" id="foregroundDisplay" ng-style="{'background': page.textColor, 'color': page.backgroundColor}">
   <button id="swap" ng-click="page.swapColor()">Set as background color</button>
+  <div style="padding-bottom: 39px;"></div>
+  <p>"<strong>Angularified</strong>" & added color pickers</p>
+  <footer style="margin-top: 15px;">
+    By
+    <a class="credit" href="https://www.facebook.com/nvcuong.infotech" target="_blank">
+      <strong>Cuong Nguyen</strong>
+      <img class="fb-avatar" src="https://badge.facebook.com/badge/787488965.5745.1959322310.png" width="100%" />
+    </a>
+    <!--<a href="https://www.facebook.com/nvcuong.infotech" target="_TOP" title="Nguy&#x1ec5;n V&#x169; C&#x1b0;&#x1a1;ng"></a>-->
+  </footer>
 </section>
 
-<footer></footer>
+<footer><div id="test-color"></div></footer>
 
 <script src="jquery-2.1.1.js"></script>
 <script src="incrementable.js"></script>
@@ -72,7 +81,7 @@
 <script src="color.js"></script>
 <!--<script src="contrast-ratio.js"></script>-->
 <script src='spectrum.js'></script>
-<script src="angular.min.js"></script>
+<script src="angular.js"></script>
 <script src="spectrum-directive.js"></script>
 <script src="index.js"></script>
 
@@ -80,10 +89,8 @@
 <!--<script>_gaq = [['_setAccount', 'UA-25106441-2'], ['_trackPageview']];</script>-->
 <!--<script src="http://www.google-analytics.com/ga.js" async></script>-->
 
-<!--<a href="http://github.com/LeaVerou/contrast-ratio"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>-->
+<a href="https://github.com/6220119/contrast-ratio"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
-<!--<a href="https://twitter.com/share" class="twitter-share-button" data-via="LeaVerou" data-size="large" data-related="w3c_wai">Tweet</a>-->
-<!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
-
+<iframe class="twitter-share-button" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F6220119.github.io%2Fcontrast-ratio%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 </body>
 </html>

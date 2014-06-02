@@ -1,7 +1,7 @@
 /**
  * Created by Android22 on 5/31/2014.
  */
-(function (PrefixFree, Color, Incrementable) {
+(function (PrefixFree, Color, Incrementable, $) {
   'use strict';
 
   var app = angular.module('colorContrast', ['angularSpectrumColorpicker']),
@@ -31,53 +31,92 @@
         range: [7, 22],
         color: 'hsl(95, 60%, 41%)'
       }
-    },
-    debounce = function (func, wait) {
-      // we need to save these in the closure
-      var timeout, args, context, timestamp;
-      return function () {
-        // save details of latest call
-        context = this;
-        args = [].slice.call(arguments, 0);
-        timestamp = new Date();
-        // this is where the magic happens
-        var later = function () {
-          // how long ago was the last call
-          var last = (new Date()) - timestamp;
-          // if the latest call was less that the wait period ago
-          // then we reset the timeout to wait for the difference
-          if (last < wait) {
-            timeout = window.setTimeout(later, wait - last);
-            // or if not we can null out the timer and run the latest
-          } else {
-            timeout = null;
-            func.apply(context, args);
-          }
-        };
-        // we only need to set the timer now if one isn't already running
-        if (!timeout) {
-          timeout = window.setTimeout(later, wait);
+    };
+
+  function debounce(func, wait) {
+    // we need to save these in the closure
+    var timeout, args, context, timestamp;
+    return function () {
+      // save details of latest call
+      context = this;
+      args = [].slice.call(arguments, 0);
+      timestamp = new Date();
+      // this is where the magic happens
+      var later = function () {
+        // how long ago was the last call
+        var last = (new Date()) - timestamp;
+        // if the latest call was less that the wait period ago
+        // then we reset the timeout to wait for the difference
+        if (last < wait) {
+          timeout = window.setTimeout(later, wait - last);
+          // or if not we can null out the timer and run the latest
+        } else {
+          timeout = null;
+          func.apply(context, args);
         }
       };
+      // we only need to set the timer now if one isn't already running
+      if (!timeout) {
+        timeout = window.setTimeout(later, wait);
+      }
     };
+  }
+
+  function isValidColor(colorStr) {
+    var elm = $('#test-color')[0],
+      oldValue = elm.style.backgroundColor;
+    elm.style.background = colorStr;
+    return elm.style.backgroundColor !== oldValue;
+  }
 
   function rangeIntersect(min, max, upper, lower) {
     return (max < upper ? max : upper) - (lower < min ? min : lower);
   }
 
-  function IndexCtrl($scope, $timeout) {
+  function parseHashPath(hashPath) {
+    var arr,
+      colors = {
+        background: 'white',
+        text: 'black'
+      };
+
+    if (hashPath && hashPath.length > 0) {
+      hashPath = hashPath.substr(1, hashPath.length - 1);
+      arr = hashPath.split('-on-');
+      if (arr[0]) {
+        colors.text = arr[0];
+      }
+      if (arr[1]) {
+        colors.background = arr[1];
+      }
+    }
+    return colors;
+  }
+
+  function IndexCtrl($scope, $timeout, $location) {
     var self = this;
 
-    self.backgroundColor = 'black';
-    self.textColor = 'white';
-
-    self.notifyChange = function () {
-      $scope.$broadcast(UPDATE_SCORE);
+    self.updateColorsFromPath = function () {
+      var colors = parseHashPath($location.path());
+      self.backgroundColor = colors.background;
+      self.textColor = colors.text;
     };
 
-//    $scope.$watch('page.backgroundColor + page.textColor', function (val) {
-//      $scope.$broadcast(UPDATE_SCORE);//self.updateScore();
-//    });
+    self.updateColorsFromPath();
+
+    window.onhashchange = function () {
+      self.updateColorsFromPath();
+      $scope.$apply(function () {
+        self.notifyChange();
+      });
+    };
+
+    self.notifyChange = function () {
+      if (isValidColor(self.textColor) || isValidColor(self.backgroundColor)) {
+        $location.path(self.textColor + '-on-' + self.backgroundColor);
+        $scope.$broadcast(UPDATE_SCORE);
+      }
+    };
 
     self.updateScore = function (bgColor, textColor) {
       self.contrast = bgColor.contrast(textColor);
@@ -179,7 +218,7 @@
       self.notifyChange();
     });
   }
-  IndexCtrl.$inject = ['$scope', '$timeout'];
+  IndexCtrl.$inject = ['$scope', '$timeout', '$location'];
   app.controller('IndexCtrl', IndexCtrl);
 
   // calc-color-score directive
@@ -215,8 +254,24 @@
   incrementableText.$inject = [];
   app.directive('incrementableText', incrementableText);
 
+  // auto-length input
+  function autoLength() {
+    return {
+      link: function (scope, elm) {
+        if (elm.is('input')) {
+          elm[0].oninput = function () {
+            elm[0].style.width = elm[0].value.length * 0.56 + 'em';
+            elm[0].style.width = elm[0].value.length + 'ch';
+          };
+        }
+      }
+    };
+  }
+  autoLength.$inject = [];
+  app.directive('autoLength', autoLength);
+
   // favorite-icon directive
-  function favoriteIcon($timeout) {
+  function favoriteIcon() {
     return {
       link: function (scope, elm, attrs) {
         var document = window.document,
@@ -243,6 +298,6 @@
       }
     };
   }
-  favoriteIcon.$inject = ['$timeout'];
+  favoriteIcon.$inject = [];
   app.directive('favoriteIcon', favoriteIcon);
-}(window.PrefixFree, window.Color, window.Incrementable));
+}(window.PrefixFree, window.Color, window.Incrementable, window.$));

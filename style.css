@@ -299,3 +299,29 @@ input#background + .app-color-picker {
 input#foreground + .app-color-picker {
   left: 3em;
 }
+
+.credit {
+  position: relative;
+}
+
+a.credit:hover, a.credit:active, a.credit:focus {
+  background: #2b3fff;
+  color: #ffffff;
+}
+
+.fb-avatar {
+  border: 0px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transition: all ease-in-out 500ms;
+  max-height: 0;
+  opacity: 0;
+}
+
+.credit:hover .fb-avatar,
+.credit:active .fb-avatar,
+.credit:focus .fb-avatar {
+  max-height: 200px;
+  opacity: 1;
+}
