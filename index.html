@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="colorContrast" ng-controller="IndexCtrl as page">
+<html lang="en" ng-controller="IndexCtrl as page">
 <head>
   <meta charset="utf-8"/>
   <title>Contrast Ratio: Easily calculate color contrast ratios. Passing WCAG was never this easy!</title>
-  <link rel='stylesheet' href='spectrum.css'/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel='stylesheet' href='spectrum.min.css'/>
+  <link rel="stylesheet" href="style.min.css"/>
   <link rel="shortcut icon" type="image/png" href="about:blank" favorite-icon/>
-  <script src="prefixfree.min.js"></script>
 </head>
 <body>
 <h1><a href="#"><span>Contrast</span> <strong>ratio</strong></a></h1>
@@ -69,24 +68,45 @@
       <strong>Cuong Nguyen</strong>
       <img class="fb-avatar" src="https://badge.facebook.com/badge/787488965.5745.1959322310.png" width="100%" />
     </a>
-    <!--<a href="https://www.facebook.com/nvcuong.infotech" target="_TOP" title="Nguy&#x1ec5;n V&#x169; C&#x1b0;&#x1a1;ng"></a>-->
   </footer>
 </section>
 
 <footer><div id="test-color"></div></footer>
 
-<script src="jquery-2.1.1.js"></script>
-<script src="incrementable.js"></script>
-<!--<script src="incrementable.js" id="incrementable" async></script>-->
-<script src="color.js"></script>
-<!--<script src="contrast-ratio.js"></script>-->
-<script src='spectrum.js'></script>
-<script src="angular.js"></script>
-<script src="spectrum-directive.js"></script>
-<script src="index.js"></script>
-
-
 <script>
+  /*
+   AngularJS v1.2.16
+   (c) 2010-2014 Google, Inc. http://angularjs.org
+   License: MIT
+   */
+  (function(){'use strict';function d(a){return function(){var c=arguments[0],b,c="["+(a?a+":":"")+c+"] http://errors.angularjs.org/1.2.16/"+(a?a+"/":"")+c;for(b=1;b<arguments.length;b++)c=c+(1==b?"?":"&")+"p"+(b-1)+"="+encodeURIComponent("function"==typeof arguments[b]?arguments[b].toString().replace(/ \{[\s\S]*$/,""):"undefined"==typeof arguments[b]?"undefined":"string"!=typeof arguments[b]?JSON.stringify(arguments[b]):arguments[b]);return Error(c)}}(function(a){var c=d("$injector"),b=d("ng");a=a.angular||
+    (a.angular={});a.$$minErr=a.$$minErr||d;return a.module||(a.module=function(){var a={};return function(e,d,f){if("hasOwnProperty"===e)throw b("badname","module");d&&a.hasOwnProperty(e)&&(a[e]=null);return a[e]||(a[e]=function(){function a(c,d,e){return function(){b[e||"push"]([c,d,arguments]);return g}}if(!d)throw c("nomod",e);var b=[],h=[],k=a("$injector","invoke"),g={_invokeQueue:b,_runBlocks:h,requires:d,name:e,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide",
+    "service"),value:a("$provide","value"),constant:a("$provide","constant","unshift"),animation:a("$animateProvider","register"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:k,run:function(a){h.push(a);return this}};f&&k(f);return g}())}}())})(window)})(window);
+  //# sourceMappingURL=angular-loader.min.js.map
+
+  /*!
+   * $script.js JS loader & dependency manager
+   * https://github.com/ded/script.js
+   * (c) Dustin Diaz 2014 | License MIT
+   */
+  (function(e,t){typeof module!="undefined"&&module.exports?module.exports=t():typeof define=="function"&&define.amd?define(t):this[e]=t()})("$script",function(){function h(e,t){for(var n=0,i=e.length;n<i;++n)if(!t(e[n]))return r;return 1}function p(e,t){h(e,function(e){return!t(e)})}function d(e,t,n){function g(e){return e.call?e():u[e]}function y(){if(!--m){u[o]=1,s&&s();for(var e in f)h(e.split("|"),g)&&!p(f[e],g)&&(f[e]=[])}}e=e[i]?e:[e];var r=t&&t.call,s=r?t:n,o=r?e.join(""):t,m=e.length;return setTimeout(function(){p(e,function t(e,n){if(e===null)return y();e=!n&&!/^https?:\/\//.test(e)&&c?c+e+".js":e;if(l[e]){o&&(a[o]=1),l[e]==2?y():setTimeout(t.bind(null,e,!0),0);return}l[e]=1,o&&(a[o]=1),v(e,y)})},0),d}function v(n,r){var i=e.createElement("script"),u;i.onload=i.onerror=i[o]=function(){if(i[s]&&!/^c|loade/.test(i[s])||u)return;i.onload=i[o]=null,u=1,l[n]=2,r()},i.async=1,i.src=n,t.insertBefore(i,t.lastChild)}var e=document,t=e.getElementsByTagName("head")[0],n="string",r=!1,i="push",s="readyState",o="onreadystatechange",u={},a={},f={},l={},c;return d.get=v,d.order=function(e,t,n){(function r(i){i=e.shift(),e.length?d(i,r):d(i,t,n)})()},d.path=function(e){c=e},d.ready=function(e,t,n){e=e[i]?e:[e];var r=[];return!p(e,function(e){u[e]||r[i](e)})&&h(e,function(e){return u[e]})?t():!function(e){f[e]=f[e]||[],f[e][i](t),n&&n(r)}(e.join("|")),d},d.done=function(e){d([null],e)},d});
+
+  $script([
+    'prefixfree.min.js',
+    'jquery-2.1.1.min.js',
+    'incrementable.min.js',
+    'color.min.js'
+  ], function () {
+    $script([
+      'spectrum.min.js',
+      'angular.min.js',
+      'spectrum-directive.min.js',
+      'index.min.js'
+    ], function () {
+      angular.bootstrap(document, ['colorContrast']);
+    });
+  });
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -94,6 +114,7 @@
   ga('create', 'UA-43478727-2', '6220119.github.io');
   ga('send', 'pageview');
 </script>
+
 <a href="https://github.com/6220119/contrast-ratio"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
 <iframe class="twitter-share-button" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F6220119.github.io%2Fcontrast-ratio%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
 </body>

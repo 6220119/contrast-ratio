@@ -84,7 +84,7 @@ label {
 		padding: .2em .5em .1em;
 		margin-top: -.1em;
 		border: thin solid rgba(0,0,0,.3);
-		background: hsla(0,0%,90%,.9);
+		background: rgba(230, 230, 230, 0.9);
 		color: #333;
 		text-shadow: 0 .05em 1px white;
 		font: 150% Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
@@ -111,7 +111,7 @@ output {
 	padding: 1em 0;
 	border: thin solid rgba(0,0,0,.4);
 	margin: -.1em auto 0;
-	background: hsl(0, 0%, 50%) -35% -35%;
+	background: #808080 -35% -35%;
 	background-size: 142% 142%;
 	text-align: center;
 	color: white;
@@ -120,7 +120,7 @@ output {
 	letter-spacing: -.05em;
 	box-shadow: .05em .1em .2em rgba(0,0,0,.4),
 	            -.1em -.1em .5em rgba(0,0,0,.4) inset,
-	            0 .3em hsla(0,0%,100%,.2) inset;
+	            0 .3em rgba(255, 255, 255, 0.2) inset;
 	border-radius: 50%;
 }
 
@@ -243,11 +243,11 @@ button {
 	border: 1px solid rgba(0,0,0,.5);
 	border-radius: .3em;
 	box-shadow: 0 1px white inset,
-				0 .6em hsla(0,0%,100%,.2) inset,
+				0 .6em rgba(255, 255, 255, 0.2) inset,
 				-.1em -.1em .5em rgba(0,0,0,.4) inset,
 	            0 .3em .2em -.3em rgba(0,0,0,.5);
 	background: white;
-	background: hsla(0,0%,80%,.6);
+	background: rgba(204, 204, 204, 0.6);
 	cursor: pointer;
 	color: black;
 	text-shadow: 0 1px 1px white;
@@ -257,11 +257,11 @@ button {
 
 	button:hover,
 	button:focus {
-		background: hsla(0,0%,100%,.6);
+		background: rgba(255, 255, 255, 0.6);
 	}
 	
 	button:active {
-		box-shadow: 0 1px hsla(0, 0%, 100%, .3),
+		box-shadow: 0 1px rgba(255, 255, 255, 0.3),
 		            0 1px .3em .05em rgba(0,0,0,.6) inset;
 	}
 	
