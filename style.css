@@ -145,6 +145,7 @@ output {
 	bottom: 0;
 	z-index: -1;
 	padding: 13em 1em 1em;
+  overflow-y: auto;
 }
 	
 	.color-display h1,
