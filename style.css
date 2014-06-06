@@ -1,16 +1,23 @@
 html {
-	background: linear-gradient(45deg, currentColor 25%,  transparent 25%, transparent 75%, currentColor 75%, currentColor), 
-	            linear-gradient(45deg, currentColor 25%,  transparent  25%,  transparent 75%, currentColor 75%, currentColor) 10px 10px;
-	background-color: #eee;
+  background: linear-gradient(45deg, #eee 25%,  transparent 25%, transparent 75%, #eee 75%, #eee),
+	            linear-gradient(45deg, #eee 25%,  transparent  25%,  transparent 75%, #eee 75%, #eee) 10px 10px;
+	/*background-color: #eee;*/
 	background-size:20px 20px;
 	color: #bbb;
+  /*background: black;*/
 }
 
 body {
+  -webkit-transition: opacity ease-in-out 350ms;
+  -moz-transition: opacity ease-in-out 350ms;
+  -ms-transition: opacity ease-in-out 350ms;
+  -o-transition: opacity ease-in-out 350ms;
+  transition: opacity ease-in-out 350ms;
 	margin: auto;
 	text-align: center;
 	font: 150%/1.5 sans-serif;
 	color: black;
+  opacity: 0;
 }
 
 a {
